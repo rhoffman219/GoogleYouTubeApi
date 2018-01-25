@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoogleYouTubeApi.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,7 +18,9 @@ namespace GoogleYouTubeApi
         protected void Button1_Click(object sender, EventArgs e)
         {
             string videoId = aTextId.Text;
-
+            YouTubeVideo video = new YouTubeVideo(videoId);
+            aLabelTitle.Text = video.title;
+            aLabelPublishedDate.Text = video.publishedDate.ToShortDateString();
         }
     }
 }

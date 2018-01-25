@@ -4,6 +4,7 @@ using Google.Apis.Util.Store;
 using Google.Apis.YouTube.v3;
 using System.IO;
 using System.Threading;
+using System.Web;
 
 namespace GoogleYouTubeApi.Models
 {
@@ -11,12 +12,11 @@ namespace GoogleYouTubeApi.Models
     {
         private static YouTubeService ytService = Auth();
 
-        public static string HttpRuntime { get; private set; }
 
         private static YouTubeService Auth()
         {
             Google.Apis.Auth.OAuth2.UserCredential creds;
-            using (var stream = new FileStream("youtube_client_secret.json", FileMode.Open, FileAccess.Read))
+            using (var stream = new FileStream(HttpRuntime.AppDomainAppPath + "youtube_client_secret.json", FileMode.Open, FileAccess.Read))
             {
                 creds = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
@@ -48,6 +48,10 @@ namespace GoogleYouTubeApi.Models
                 video.title = response.Items[0].Snippet.Title;
                 video.description = response.Items[0].Snippet.Description;
                 video.publishedDate = response.Items[0].Snippet.PublishedAt.Value;
+            }
+            else
+            {
+                //video id not found
             }
         }
     }
