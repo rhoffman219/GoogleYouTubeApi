@@ -12,10 +12,9 @@ namespace GoogleYouTubeApi.Models
     {
         private static YouTubeService ytService = Auth();
 
-
         private static YouTubeService Auth()
         {
-            Google.Apis.Auth.OAuth2.UserCredential creds;
+            UserCredential creds;
             using (var stream = new FileStream(HttpRuntime.AppDomainAppPath + "youtube_client_secret.json", FileMode.Open, FileAccess.Read))
             {
                 creds = GoogleWebAuthorizationBroker.AuthorizeAsync(
