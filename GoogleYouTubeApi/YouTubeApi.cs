@@ -61,6 +61,8 @@ namespace GoogleYouTubeApi.Models
                 nextPage = response.NextPageToken;
             }
 
+            
+
             return videos.ToArray<YouTubeVideo>();
         }
 
@@ -79,7 +81,8 @@ namespace GoogleYouTubeApi.Models
             }
             else
             {
-                //video id not found
+                video.title = "Video Not Found";
+             
             }
         }
     }
