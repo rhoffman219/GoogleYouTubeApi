@@ -65,5 +65,32 @@ namespace GoogleYouTubeApi {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label aLabelPublishedDate;
+        
+        /// <summary>
+        /// aTextPlaylistId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox aTextPlaylistId;
+        
+        /// <summary>
+        /// aButtonGetPlaylistId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button aButtonGetPlaylistId;
+        
+        /// <summary>
+        /// aListVideos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox aListVideos;
     }
 }

@@ -2,6 +2,7 @@
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
 using Google.Apis.YouTube.v3;
+using System;
 using System.IO;
 using System.Threading;
 using System.Web;
@@ -33,6 +34,23 @@ namespace GoogleYouTubeApi.Models
             });
             return service;
 
+        }
+
+        internal static YouTubeVideo[] GetPlaylist(string playlistId)
+        {
+            var request = ytService.PlaylistItems.List("contentDetails");
+            request.PlaylistId = playlistId;
+
+            var response = request.Execute();
+
+            YouTubeVideo[] videos = new YouTubeVideo[response.Items.Count];
+            int i = 0;
+            foreach(var item in response.Items)
+            {
+                videos[i++] = new YouTubeVideo(item.ContentDetails.VideoId);
+            }
+
+            return videos;
         }
 
         public static void GetVideoInfo(YouTubeVideo video)

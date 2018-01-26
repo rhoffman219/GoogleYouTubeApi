@@ -22,5 +22,18 @@ namespace GoogleYouTubeApi
             aLabelTitle.Text = video.title;
             aLabelPublishedDate.Text = video.publishedDate.ToShortDateString();
         }
+
+        protected void aButtonGetPlaylistId_Click(object sender, EventArgs e)
+        {
+            aListVideos.Items.Clear();
+
+            string playlistId = aTextPlaylistId.Text;
+            YouTubeVideo[] videos = YouTubeAPI.GetPlaylist(playlistId);
+
+            foreach(var video in videos)
+            {
+                aListVideos.Items.Add(video.publishedDate.ToShortDateString() + ": " + video.title + " (" + video.id + ")");
+            }
+        }
     }
 }
