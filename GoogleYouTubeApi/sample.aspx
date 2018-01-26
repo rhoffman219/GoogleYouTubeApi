@@ -16,9 +16,9 @@
             <br />
             <br />
             <asp:Panel ID="aPanelVideoInfo" runat="server" Height="52px" Width="1017px">
-                Video Title:<asp:Label ID="aLabelTitle" runat="server" Text="Label"></asp:Label>
+                Video Title:<asp:Label ID="aLabelTitle" runat="server"></asp:Label>
                 <br />
-                Video Published On:<asp:Label ID="aLabelPublishedDate" runat="server" Text="Label"></asp:Label>
+                Video Published On:<asp:Label ID="aLabelPublishedDate" runat="server"></asp:Label>
             </asp:Panel>
             <br />
             <br />
