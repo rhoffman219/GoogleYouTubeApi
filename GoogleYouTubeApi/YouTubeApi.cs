@@ -3,7 +3,9 @@ using Google.Apis.Services;
 using Google.Apis.Util.Store;
 using Google.Apis.YouTube.v3;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Web;
 
@@ -40,17 +42,26 @@ namespace GoogleYouTubeApi.Models
         {
             var request = ytService.PlaylistItems.List("contentDetails");
             request.PlaylistId = playlistId;
+            
+            LinkedList<YouTubeVideo> videos = new LinkedList<YouTubeVideo>();
 
-            var response = request.Execute();
+            string nextPage = "";
 
-            YouTubeVideo[] videos = new YouTubeVideo[response.Items.Count];
-            int i = 0;
-            foreach(var item in response.Items)
+            while (nextPage != null)
             {
-                videos[i++] = new YouTubeVideo(item.ContentDetails.VideoId);
+                request.PageToken = nextPage;
+                var response = request.Execute();
+
+                int i = 0;
+                foreach (var item in response.Items)
+                {
+                    videos.AddLast(new YouTubeVideo(item.ContentDetails.VideoId));
+                }
+
+                nextPage = response.NextPageToken;
             }
 
-            return videos;
+            return videos.ToArray<YouTubeVideo>();
         }
 
         public static void GetVideoInfo(YouTubeVideo video)
